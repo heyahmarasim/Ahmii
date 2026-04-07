@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Romantic color palette */
+    --background: 345 30% 12%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 345 50% 25%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 345 50% 25%;
+
+    --primary: 348 83% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 60% 75%;
+    --secondary-foreground: 345 50% 20%;
+
+    --muted: 345 20% 20%;
+    --muted-foreground: 340 30% 70%;
+
+    --accent: 340 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 40% 30%;
+    --input: 340 40% 30%;
+    --ring: 348 83% 47%;
+
+    --radius: 1rem;
+
+    /* Custom romantic colors */
+    --rose-deep: 348 70% 40%;
+    --rose-light: 340 80% 85%;
+    --rose-blush: 350 60% 95%;
+    --wine: 345 45% 18%;
+    --wine-dark: 345 50% 12%;
+    --gold-soft: 40 60% 70%;
+    --cream: 40 40% 96%;
+    
+    /* Gradients */
+    --gradient-envelope: linear-gradient(180deg, hsl(348, 83%, 47%) 0%, hsl(345, 70%, 35%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(340, 60%, 98%) 100%);
+    --gradient-romantic: linear-gradient(135deg, hsl(345, 45%, 18%) 0%, hsl(348, 50%, 25%) 50%, hsl(345, 45%, 18%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(348, 83%, 47%, 0.2);
+    --shadow-card: 0 10px 40px -10px hsl(345, 50%, 15%, 0.4);
+    --shadow-glow: 0 0 30px hsl(348, 83%, 47%, 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 345 30% 12%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 98%;
+    --card-foreground: 345 50% 25%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 345 50% 25%;
+    --primary: 348 83% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 60% 75%;
+    --secondary-foreground: 345 50% 20%;
+    --muted: 345 20% 20%;
+    --muted-foreground: 340 30% 70%;
+    --accent: 340 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 340 40% 30%;
+    --input: 340 40% 30%;
+    --ring: 348 83% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Lora', serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+@layer components {
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .font-elegant {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-romantic {
+    font-family: 'Lora', serif;
+  }
+
+  /* Heart pattern background */
+  .hearts-bg {
+    position: relative;
+  }
+
+  .hearts-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c4526a' opacity='0.3'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 
+      repeat;
+    background-size: 40px 40px;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  /* Card hover effect */
+  .card-romantic {
+    @apply bg-card rounded-2xl shadow-lg transition-all duration-500;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-romantic:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow), var(--shadow-card);
+  }
+
+  /* Envelope flap animation */
+  .envelope-flap-open {
+    animation: openFlapEnvelope 1s ease-out forwards;
+  }
+
+  /* 3D transform utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+@layer utilities {
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* Pulse glow */
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Sparkle */
+  .animate-sparkle {
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+
+  /* Fade in up */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  /* Scale in */
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  /* Slide animations */
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-top {
+    animation: slideInTop 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-bottom {
+    animation: slideInBottom 0.8s ease-out forwards;
+  }
+
+  /* Heart beat */
+  .animate-heartbeat {
+    animation: heartbeat 1.2s ease-in-out infinite;
+  }
+
+  /* Bounce in */
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  /* Assemble card animation */
+  .animate-assemble-card {
+    animation: assembleCard 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Spray hearts */
+  .animate-spray-heart {
+    animation: sprayHeart 2s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+  .stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+
+  /* Confetti fall */
+  .animate-confetti-fall {
+    animation: confettiFall 3s ease-out forwards;
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20vh) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(348, 83%, 47%, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(348, 83%, 47%, 0.7);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes openFlapEnvelope {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes floatingHeart {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes assembleCard {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) rotateX(45deg) scale(0.5);
+  }
+  60% {
+    transform: translateY(10px) rotateX(-5deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes sprayHeart {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-20px);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1) translateY(-10px);
+  }
+}
+
+.floating-heart {
+  position: fixed;
+  animation: floatingHeart linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
